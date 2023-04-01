@@ -14,7 +14,7 @@ public class Member {
     private Long id;
 
     private String name;
-    @Embedded // 이게 뭐지??
+    @Embedded
     private Address address;
     @OneToMany(mappedBy = "member") // 오더 테이블에 있는 멤버 필드에 의해서 매핑 된 것이다. 거울일 뿐이야!
     private List<Order> orders = new ArrayList<>();
