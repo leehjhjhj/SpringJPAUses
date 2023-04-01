@@ -1,6 +1,6 @@
 # Chapter 4, 5
 ## 애플리케이션 아키텍처
-![img.png](img.png)
+![img.png](../img.png)
 - 컨트롤러에서 레포지토리에 바로 접근도 가능하게
 ***
 ## @Transactional
@@ -42,3 +42,8 @@ private MemberRepository memberRepository;
 - 오더가 딜리버리를 관리하고, 오더가 오더 아이템을 관리하는 정도의 그림에서만 사용
 - 다른 곳에서도 참조를 하면 막 CASCADE를 사용하면 안됨
 - 그럴 경우 별도의 repository를 생성해야함
+
+## 스태틱 생성자만 사용하게 만들기
+- protected 생성자를 엔티티에 생성해서 스태틱 생성자를 사용하지 않고, Orderitem orderitem = new Orderitem();를 사용하면 오류나게 만들기
+- proteced Orderitem(){} 생성자는 @NoArgsConstructor(access = AccessLevel.PROTECTED) 를 추가한 것과 같다. 
+

@@ -2,13 +2,16 @@ package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.context.annotation.Lazy;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
     @Id
     @GeneratedValue
@@ -35,7 +38,7 @@ public class OrderItem {
     }
     //재고 수량을 원복해준다//
     public void cancel() {
-        getItem().addStock(count);
+        getItem().addStock(count); // 여기는 왜 getItem일까? item이 아니고.. 위는 생성자라 그런가?
     }
     //조회 로직//
     public int getTotalPrice() {
