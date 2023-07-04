@@ -47,7 +47,7 @@ public class Order {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
-    //생성메서드//
+    //생성메서드(정적 팩토리 메서드)//
     public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
         Order order = new Order();
         order.setMember(member);

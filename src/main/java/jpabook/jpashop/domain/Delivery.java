@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,13 +13,14 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "delivery")
     private Order order;
 
     @Embedded
     private Address address;
 
-    @Enumerated(EnumType.STRING) // 이건 또 뭐지?
+    @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
 
 }

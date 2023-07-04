@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.item.Item;
 import lombok.AccessLevel;
@@ -20,13 +21,14 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
     private int orderPrice;
     private int count;
 
-    //생성 메서드 //
+    //생성 메서드 // 이게 있으면 더 좋다.
     public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
@@ -38,7 +40,7 @@ public class OrderItem {
     }
     //재고 수량을 원복해준다//
     public void cancel() {
-        getItem().addStock(count); // 여기는 왜 getItem일까? item이 아니고.. 위는 생성자라 그런가?
+        getItem().addStock(count); //
     }
     //조회 로직//
     public int getTotalPrice() {
